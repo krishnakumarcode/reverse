@@ -1,0 +1,29 @@
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+    FILE*fp;                //Opening file
+    FILE*nfp;
+    int f,i=0;
+    fp=fopen("krishna.txt","r");
+    fseek(fp,0,SEEK_END);           //Seeking to the end
+    f=ftell(fp);
+    while (i<f)
+    {
+        i++;
+        fseek(fp,-i,SEEK_END);           //Printing in from reverse
+        printf("%c",fgetc(fp));
+    }
+    fclose(fp);
+    FILE*fp2;
+    fp2=fopen("krishna.txt","r");             //Open a new file
+    char ch;
+    nfp = fopen("fresh_j.txt","w");
+    fseek(fp2,0,SEEK_SET);
+    while((ch=fgetc(fp2)!=EOF))
+    {
+        fputc(ch,nfp);                      //Print the content in the new file
+    } 
+    fclose(fp2);
+    fclose(nfp);
+}
